@@ -5,16 +5,19 @@ public class Dasar {
 
         Scanner sc = new Scanner(System.in);
 
-        int hotel, lama, hargaAkhir;
+        String hotel;
+        int harga, lama, hargaAkhir;
         
-    System.out.println("Mau nginep dimana (aria, savana, grandPalace)?");
-    hotel = sc.nextInt();
+    System.out.println("Mau nginep dimana ?");
+    hotel = sc.nextLine();
+    System.out.println("harganya berapa ?");
+    harga = sc.nextInt();
     System.out.println("berapa Malam ?");
     lama = sc.nextInt();
 
-    hargaAkhir = hotel * lama;
+    hargaAkhir = harga * lama;
 
-    System.out.println("Harganya " + hargaAkhir);
+    System.out.println("Harganya " + hotel + " selama " + lama + " malam adalah " + hargaAkhir);
 
     }
 }
