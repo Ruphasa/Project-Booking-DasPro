@@ -4,8 +4,7 @@ public class Dasar {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-            int harga, option, lama;
-            double haTot;
+            int harga, option, haTot, lama;
             {
                 System.out.println("Nginep dimana?");
                 System.out.println("1. aria");
