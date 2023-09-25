@@ -54,8 +54,7 @@ public class Dasar {
                     case 6:
                         System.out.println("your now exit");
                         break;
-            }
-         
+            } 
         } 
     }
 }
