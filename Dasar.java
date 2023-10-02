@@ -7,6 +7,7 @@ public class Dasar {
             int harga, option, lama, haMa, hari, bulan;
             double haTot, haDis;
             float disc;
+
             {
                 System.out.println("Nginep dimana?");
                 System.out.println("1. aria");
