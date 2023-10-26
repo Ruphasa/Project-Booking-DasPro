@@ -2,12 +2,39 @@ import java.util.Scanner;
 public class Dasar {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-            int harga, option, lama, haMa, hari, bulan, counter = 0;
+            boolean login = false;
+            int harga, option, lama, haMa, hari, bulan, counter = 0, user = -2, word = -1;
             double haTot, haDis;
             float disc = 0.0f;
+            String namaLog, passLog;
+            String nama[] = {"rio","riski","necha"};
+            String pass[] = {"test","coba","bisa"};
 
             do {
-                System.out.println("Nginep dimana?");
+              System.out.println("Username: ");  
+              namaLog = scanner.nextLine();
+              
+              for (int i = 0; i < nama.length; i++) {
+                if (namaLog.equals(nama[i])) {
+                    user = i;
+                }
+              }
+                System.out.println("Password");
+                passLog = scanner.nextLine();
+
+              for (int i = 0; i < pass.length; i++) {
+                if (passLog.equals(pass[i])) {
+                    word = i;
+                }
+              }  if (user == word) {
+                login = true;
+              }
+            } while(login != true);
+            
+
+
+            do {
+                System.out.println(namaLog + " Mau Nginep dimana?");
                 System.out.println("1. aria");
                 System.out.println("2. montana");
                 System.out.println("3. Exit");
