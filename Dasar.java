@@ -5,7 +5,7 @@ public class Dasar {
         //Declareration
         Scanner scanner = new Scanner(System.in);
         boolean login = false;
-        int harga = 0, option, lama, haMa, hari, bulan, tahun, counter = 0, user = -2, word = -1, bed;
+        int option, lama, haMa, hari, bulan, tahun, counter = 0, user = -2, word = -1, bed;
         double haTot = 0, haDis;
         float disc = 0.0f;
         String pesanLagi, cetakData, backMenu, namaLog, passLog;
