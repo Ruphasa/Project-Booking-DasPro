@@ -4,7 +4,6 @@ public class Dasar {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean login = false;
-<<<<<<< HEAD
         int harga=0, option, lama, haMa, hari, bulan, tahun, counter = 0, user = -2, word = -1;
         double haTot=0, haDis;
         float disc = 0.0f;
@@ -12,17 +11,8 @@ public class Dasar {
         String nama[] = { "Rio", "Rizqi", "Necha" };
         String pass[] = { "test", "coba", "bisa" };
         String hotel="";
-=======
         char pesanLagi, cetakData, backMenu;
-        int harga, option, lama, haMa, hari, bulan, tahun, counter = 0, user = -2, word = -1;
-        double haTot, haDis;
-        float disc = 0.0f;
-        String namaLog, passLog;
-        String nama[] = { "Rio", "Riski", "Necha" };
-        String pass[] = { "test", "coba", "bisa" };
-        String hotel[] = { "Aria", "Montana", "Exit" };
->>>>>>> 4f669dc9c0bdb6b4a3dbafe711d9d48e5e9bea3c
-
+        String hotel="";
         System.out.println(
                 "\n================================== APLIKASI BOOKING HOTEL ===================================");
 
@@ -33,12 +23,7 @@ public class Dasar {
             System.out.println("\t\t\t Silahkan masukkan username dan password Anda");
             System.out.println(
                     "=============================================================================================");
-
-<<<<<<< HEAD
             System.out.print("Username : ");
-=======
-            System.out.println("Username: ");
->>>>>>> 4f669dc9c0bdb6b4a3dbafe711d9d48e5e9bea3c
             namaLog = scanner.nextLine();
 
             for (int i = 0; i < nama.length; i++) {
@@ -46,11 +31,7 @@ public class Dasar {
                     user = i;
                 }
             }
-<<<<<<< HEAD
             System.out.print("Password : ");
-=======
-            System.out.println("Password");
->>>>>>> 4f669dc9c0bdb6b4a3dbafe711d9d48e5e9bea3c
             passLog = scanner.nextLine();
 
             for (int i = 0; i < pass.length; i++) {
@@ -91,27 +72,9 @@ public class Dasar {
             lama = scanner.nextInt();
             switch (option) {
                 case 1:
-=======
-            System.out.println("1 " + hotel[0]);
-            System.out.println("2 " + hotel[1]);
-            System.out.println("3 " + hotel[2]);
-            System.out.println("Silahkan pilih hotel, Mau nginep dimana? ");
-            option = scanner.nextInt();
-
-            switch (option) {
-                case 1:
-                    System.out.println("Masukkan Tanggal Pemesanan: ");
-                    hari = scanner.nextInt();
-                    System.out.println("Masukkan Bulan: ");
-                    bulan = scanner.nextInt();
-                    System.out.println("Masukkan Tahun: ");
-                    tahun = scanner.nextInt();
->>>>>>> 4f669dc9c0bdb6b4a3dbafe711d9d48e5e9bea3c
-
                     if (hari == 17 && bulan == 8) {
                         disc += 0.1f;
                     }
-<<<<<<< HEAD
                     hotel="Aria";
                     harga = 1000000;                    
                     break;
