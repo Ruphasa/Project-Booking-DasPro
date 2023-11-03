@@ -4,13 +4,17 @@ public class Dasar {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean login = false;
-        int harga=0, option, lama, haMa, hari, bulan, tahun, counter = 0, user = -2, word = -1;
-        double haTot=0, haDis;
+        int harga = 0, option, lama, haMa, hari, bulan, tahun, counter = 0, user = -2, word = -1, bed;
+        double haTot = 0, haDis;
         float disc = 0.0f;
         String pesanLagi, cetakData, backMenu, namaLog, passLog;
         String nama[] = { "Rio", "Rizqi", "Necha" };
         String pass[] = { "test", "coba", "bisa" };
-        String hotel="";
+        String hotel = "";
+        int jenisKamar[][] = {
+                { 100000, 300000, 400000, 600000 },
+                { 150000, 400000, 550000, 800000 }
+        };
         System.out.println(
                 "\n================================== APLIKASI BOOKING HOTEL ===================================");
 
@@ -60,6 +64,14 @@ public class Dasar {
             System.out.println("3 Exit");
             System.out.println("Silahkan pilih hotel, Mau nginep dimana? ");
             option = scanner.nextInt();
+
+            System.out.println("Mau jenis kamar yang mana? ");
+            System.out.println("1 Single Bed");
+            System.out.println("2 Double Bed");
+            System.out.println("3 Queens Bed");
+            System.out.println("4 Kings Bed");
+            bed = scanner.nextInt();
+
             System.out.println("Masukkan Tanggal Pemesanan: ");
             hari = scanner.nextInt();
             System.out.println("Masukkan Bulan: ");
@@ -73,70 +85,69 @@ public class Dasar {
                     if (hari == 17 && bulan == 8) {
                         disc += 0.1f;
                     }
-                    hotel="Aria";
-                    harga = 1000000;                    
+                    hotel = "Aria";
                     break;
-                                        
+
                 case 2:
-                                        
-                if (hari == 25 && bulan == 12) {
-                disc += 0.12f;
-                }
-                hotel="Montana";                     
-                harga = 2000000;         
-                case 3:
-                System.out.println("\t\t\t\t ***Your Now Exit***");
-                System.out.println("\t\t\t\t    **Thank You**");
-                break;                        
-                default:
-                System.out.println("\t\t Menu yang anda masukkan salah!");
-                break;
-                }
-                haMa = harga * lama;
-                haDis = haMa * disc;
-                haTot = haMa - haDis;
-                counter++;
-                System.out.println("Total Tagihan = " + haTot);
-                System.out.println(
-                "===============================================================================================");
-                System.out.print("\t\t   Apakah anda ingin mencetak data pemesanan? (Y/T) : ");
-                cetakData = scanner.next();
-                    if (cetakData.equalsIgnoreCase("y")) {
-                    System.out.println(
-                    "\n===============================================================================================");
-                    System.out.println("\t\t\t\t Data Pemesanan Hotel");
-                    System.out.println(
-                    "===============================================================================================");
-                    System.out.println("Nama Pemesan\t: " + namaLog);                        
-                    System.out.println("Hotel\t\t: " + hotel);
-                    System.out.println("Waktu Pemesanan\t: " + hari + "/" + bulan + "/" + tahun);
-                    System.out.println("Lama Menginap\t: " + lama);
-                    System.out.println("Diskon\t\t: " + disc);
-                    System.out.println("Total Tagihan\t: " + haTot);
-                                                    
-                    } else {
-                        System.out.println("\t\t\t Data Tidak Dicetak, Terimakasih");
+
+                    if (hari == 25 && bulan == 12) {
+                        disc += 0.12f;
                     }
-                    System.out.println(
+                    hotel = "Montana";
+                case 3:
+                    System.out.println("\t\t\t\t ***Your Now Exit***");
+                    System.out.println("\t\t\t\t    **Thank You**");
+                    break;
+                default:
+                    System.out.println("\t\t Menu yang anda masukkan salah!");
+                    break;
+            }
+            haMa = jenisKamar[option - 1][bed - 1] * lama;
+            haDis = haMa * disc;
+            haTot = haMa - haDis;
+            counter++;
+            System.out.println("Total Tagihan = " + haTot);
+            System.out.println(
                     "===============================================================================================");
-                    System.out.print("\t\t   Apakah anda ingin memesan lagi? (Y/T) : ");
-                    pesanLagi = scanner.next();
-                    if (pesanLagi.equalsIgnoreCase("y")) {
-                        option=option;
-                        continue;
-                    } else {
-                        System.out.println("\t\t Terimakasih Telah Memesan "+"kamar"+hotel+" di Aplikasi Kami");
-                    } 
-                    System.out.println(
+            System.out.print("\t\t   Apakah anda ingin mencetak data pemesanan? (Y/T) : ");
+            cetakData = scanner.next();
+            if (cetakData.equalsIgnoreCase("y")) {
+                System.out.println(
+                        "\n===============================================================================================");
+                System.out.println("\t\t\t\t Data Pemesanan Hotel");
+                System.out.println(
+                        "===============================================================================================");
+                System.out.println("Nama Pemesan\t: " + namaLog);
+                System.out.println("Hotel\t\t: " + hotel);
+                System.out.println("Jenis Kamar\t: " + bed);
+                System.out.println("Waktu Pemesanan\t: " + hari + "/" + bulan + "/" + tahun);
+                System.out.println("Lama Menginap\t: " + lama);
+                System.out.println("Diskon\t\t: " + disc);
+                System.out.println("Total Tagihan\t: " + haTot);
+
+            } else {
+                System.out.println("\t\t\t Data Tidak Dicetak, Terimakasih");
+            }
+            System.out.println(
                     "===============================================================================================");
-                    System.out.print("\t\t\t   Kembali ke menu (ketik 'Y') : ");
-                    backMenu = scanner.next();
-                    if (backMenu.equalsIgnoreCase("y")) {
-                        continue;
-                    } else
-                    option=3;
-                System.out.println("\t\t\t\t    Silahkan Exit");
-            break;        
+            System.out.print("\t\t   Apakah anda ingin memesan lagi? (Y/T) : ");
+            pesanLagi = scanner.next();
+            if (pesanLagi.equalsIgnoreCase("y")) {
+                option = option;
+                continue;
+            } else {
+                System.out.println("\t\t Terimakasih Telah Memesan " + "kamar" + hotel + " di Aplikasi Kami");
+            }
+            System.out.println(
+                    "===============================================================================================");
+            System.out.print("\t\t\t   Kembali ke menu (ketik 'Y') : ");
+            backMenu = scanner.next();
+            if (backMenu.equalsIgnoreCase("y")) {
+                continue;
+            } else
+                option = 3;
+            System.out.println("\t\t\t\t    Silahkan Exit");
+            break;
         } while (option != 3);
     }
 }
