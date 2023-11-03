@@ -11,8 +11,6 @@ public class Dasar {
         String nama[] = { "Rio", "Rizqi", "Necha" };
         String pass[] = { "test", "coba", "bisa" };
         String hotel="";
-        char pesanLagi, cetakData, backMenu;
-        String hotel="";
         System.out.println(
                 "\n================================== APLIKASI BOOKING HOTEL ===================================");
 
@@ -23,6 +21,7 @@ public class Dasar {
             System.out.println("\t\t\t Silahkan masukkan username dan password Anda");
             System.out.println(
                     "=============================================================================================");
+
             System.out.print("Username : ");
             namaLog = scanner.nextLine();
 
@@ -56,7 +55,6 @@ public class Dasar {
                 System.out.println("\t\t *Selamat Anda mendapatkan discount loyalty sebesar 3%*");
             }
             System.out.println("Halo " + namaLog + ", Selamat Datang!");
-<<<<<<< HEAD
             System.out.println("1 Aria");
             System.out.println("2 Montana");
             System.out.println("3 Exit");
@@ -116,40 +114,10 @@ public class Dasar {
                     System.out.println("Diskon\t\t: " + disc);
                     System.out.println("Total Tagihan\t: " + haTot);
                                                     
-=======
-
-                    harga = 1000000;
-                    System.out.println("Masukkan Lama Menginap: ");
-                    lama = scanner.nextInt();
-                    haMa = harga * lama;
-                    haDis = haMa * disc;
-                    haTot = haMa - haDis;
-                    System.out.println("Total Tagihan = " + haTot);
-
-                    System.out.println(
-                            "===============================================================================================");
-                    System.out.print("\t\t   Apakah anda ingin mencetak data pemesanan? (Y/T) : ");
-                    cetakData = scanner.next().charAt(0);
-
-                    if (cetakData == 'Y' || cetakData == 'y') {
-                        System.out.println(
-                                "\n===============================================================================================");
-                        System.out.println("\t\t\t\t Data Pemesanan Hotel");
-                        System.out.println(
-                                "===============================================================================================");
-                        System.out.println("Nama Pemesan\t: " + namaLog);
-                        System.out.println("Hotel\t\t: " + hotel[0]);
-                        System.out.println("Waktu Pemesanan\t: " + hari + "/" + bulan + "/" + tahun);
-                        System.out.println("Lama Menginap\t: " + lama);
-                        System.out.println("Diskon\t\t: " + disc);
-                        System.out.println("Total Tagihan\t: " + haTot);
-
->>>>>>> 4f669dc9c0bdb6b4a3dbafe711d9d48e5e9bea3c
                     } else {
                         System.out.println("\t\t\t Data Tidak Dicetak, Terimakasih");
                     }
                     System.out.println(
-<<<<<<< HEAD
                     "===============================================================================================");
                     System.out.print("\t\t   Apakah anda ingin memesan lagi? (Y/T) : ");
                     pesanLagi = scanner.next();
@@ -169,95 +137,6 @@ public class Dasar {
                     option=3;
                 System.out.println("\t\t\t\t    Silahkan Exit");
             break;        
-=======
-                            "===============================================================================================");
-                    System.out.print("\t\t   Apakah anda ingin memesan lagi? (Y/T) : ");
-                    pesanLagi = scanner.next().charAt(0);
-                    if (pesanLagi == 'Y' || pesanLagi == 'y') {
-                    } else {
-                        System.out.println("\t\t Terimakasih Telah Memesan Hotel di Aplikasi Kami");
-                    }
-
-                    System.out.println(
-                            "===============================================================================================");
-                    System.out.print("\t\t\t   Kembali ke menu (ketik 'Y') : ");
-                    backMenu = scanner.next().charAt(0);
-                    if (backMenu == 'y' || backMenu == 'Y') {
-                    } else 
-                        System.out.println("\t\t\t\t    Silahkan Exit");
-                    break;
-
-                case 2:
-                    System.out.println("Masukkan Tanggal Pemesanan: ");
-                    hari = scanner.nextInt();
-                    System.out.println("Masukkan Bulan: ");
-                    bulan = scanner.nextInt();
-                    System.out.println("Masukkan Tahun: ");
-                    tahun = scanner.nextInt();
-
-                    if (hari == 25 && bulan == 12) {
-                        disc += 0.12f;
-                    }
-
-                    harga = 2000000;
-                    System.out.println("Masukkan Lama Menginap: ");
-                    lama = scanner.nextInt();
-                    haMa = harga * lama;
-                    haDis = haMa * disc;
-                    haTot = haMa - haDis;
-                    System.out.println("Total Tagihan = " + haTot);
-
-                    System.out.println(
-                            "===============================================================================================");
-                    System.out.print("\t\t   Apakah anda ingin mencetak data pemesanan? (Y/T) : ");
-                    cetakData = scanner.next().charAt(0);
-
-                    if (cetakData == 'Y' || cetakData == 'y') {
-                        System.out.println(
-                                "\n===============================================================================================");
-                        System.out.println("\t\t\t\t Data Pemesanan Hotel");
-                        System.out.println(
-                                "===============================================================================================");
-                        System.out.println("Nama Pemesan\t: " + namaLog);
-                        System.out.println("Hotel\t\t: " + hotel[1]);
-                        System.out.println("Waktu Pemesanan\t: " + hari + "/" + bulan + "/" + tahun);
-                        System.out.println("Lama Menginap\t: " + lama);
-                        System.out.println("Diskon\t\t: " + disc);
-                        System.out.println("Total Tagihan\t: " + haTot);
-
-                    } else {
-                        System.out.println("\t\t\t Data Tidak Dicetak, Terimakasih");
-                    }
-                    System.out.println(
-                            "===============================================================================================");
-                    System.out.print("\t\t   Apakah anda ingin memesan lagi? (Y/T) : ");
-                    pesanLagi = scanner.next().charAt(0);
-                    if (pesanLagi == 'Y' || pesanLagi == 'y') {
-                    } else {
-                        System.out.println("\t\t Terimakasih Telah Memesan Hotel di Aplikasi Kami");
-                    }
-
-                    System.out.println(
-                            "===============================================================================================");
-                    System.out.print("\t\t\t   Kembali ke menu (ketik 'Y') : ");
-                    backMenu = scanner.next().charAt(0);
-                    if (backMenu == 'y' || backMenu == 'Y') {
-                    } else 
-                        System.out.println("\t\t\t\t    Silahkan Exit");
-                    break;
-
-                case 3:
-                    System.out.println("\t\t\t\t ***Your Now Exit***");
-                    System.out.println("\t\t\t\t    **Thank You**");
-                    break;
-
-                default:
-                    System.out.println("\t\t Menu yang anda masukkan salah!");
-                    break;
-            }
-            counter++;
-
->>>>>>> 4f669dc9c0bdb6b4a3dbafe711d9d48e5e9bea3c
         } while (option != 3);
     }
 }
