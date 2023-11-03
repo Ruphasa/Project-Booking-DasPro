@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Dasar {
     public static void main(String[] args) {
+        //Declareration
         Scanner scanner = new Scanner(System.in);
         boolean login = false;
         int harga = 0, option, lama, haMa, hari, bulan, tahun, counter = 0, user = -2, word = -1, bed;
@@ -17,7 +18,7 @@ public class Dasar {
         };
         System.out.println(
                 "\n================================== APLIKASI BOOKING HOTEL ===================================");
-
+        //Login
         do {
             System.out.println(
                     "\n=============================================================================================");
@@ -46,7 +47,7 @@ public class Dasar {
                 login = true;
             }
         } while (login != true);
-
+        //Asking what hotel did you want to book
         do {
             System.out.println(
                     "\n=============================================================================================");
@@ -64,14 +65,17 @@ public class Dasar {
             System.out.println("3 Exit");
             System.out.println("Silahkan pilih hotel, Mau nginep dimana? ");
             option = scanner.nextInt();
-
-            System.out.println("Mau jenis kamar yang mana? ");
-            System.out.println("1 Single Bed");
-            System.out.println("2 Double Bed");
-            System.out.println("3 Queens Bed");
-            System.out.println("4 Kings Bed");
+            if (option==3) {
+                continue;
+            }
+            //Asking Room
+            System.out.println("mau jenis kamar yang mana? ");
+            System.out.println("1. Single Bed");
+            System.out.println("2. Double Bed");
+            System.out.println("3. Queens Bed");
+            System.out.println("4. Kings Bed");
             bed = scanner.nextInt();
-
+            //Asking Date
             System.out.println("Masukkan Tanggal Pemesanan: ");
             hari = scanner.nextInt();
             System.out.println("Masukkan Bulan: ");
@@ -80,6 +84,7 @@ public class Dasar {
             tahun = scanner.nextInt();
             System.out.println("Masukkan Lama Menginap: ");
             lama = scanner.nextInt();
+            //Case
             switch (option) {
                 case 1:
                     if (hari == 17 && bulan == 8) {
@@ -102,15 +107,18 @@ public class Dasar {
                     System.out.println("\t\t Menu yang anda masukkan salah!");
                     break;
             }
+            //operation
             haMa = jenisKamar[option - 1][bed - 1] * lama;
             haDis = haMa * disc;
             haTot = haMa - haDis;
             counter++;
             System.out.println("Total Tagihan = " + haTot);
+            //Asking for data
             System.out.println(
                     "===============================================================================================");
             System.out.print("\t\t   Apakah anda ingin mencetak data pemesanan? (Y/T) : ");
             cetakData = scanner.next();
+            //Printing data
             if (cetakData.equalsIgnoreCase("y")) {
                 System.out.println(
                         "\n===============================================================================================");
@@ -128,6 +136,7 @@ public class Dasar {
             } else {
                 System.out.println("\t\t\t Data Tidak Dicetak, Terimakasih");
             }
+            //Asking booking again in the same hotel
             System.out.println(
                     "===============================================================================================");
             System.out.print("\t\t   Apakah anda ingin memesan lagi? (Y/T) : ");
@@ -135,9 +144,10 @@ public class Dasar {
             if (pesanLagi.equalsIgnoreCase("y")) {
                 option = option;
                 continue;
-            } else {
+            } else if(pesanLagi.equalsIgnoreCase("t")){
                 System.out.println("\t\t Terimakasih Telah Memesan " + "kamar" + hotel + " di Aplikasi Kami");
             }
+            //Asking back to menu
             System.out.println(
                     "===============================================================================================");
             System.out.print("\t\t\t   Kembali ke menu (ketik 'Y') : ");
