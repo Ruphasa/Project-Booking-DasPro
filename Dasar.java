@@ -2,14 +2,15 @@ import java.util.Scanner;
 
 public class Dasar {
     public static void main(String[] args) {
-        //Declareration
+        // Declareration
         Scanner scanner = new Scanner(System.in);
         boolean login = false, signUp = false;
-        int option, lama, haMa, hari, bulan, tahun, counter = 0, user = -2, word = -1, bed, uName = 3, passW = 3, duplicate = 0;
+        int option, lama, haMa, hari, bulan, tahun, counter = 0, user = -2, word = -1, bed, uName = 3, passW = 3,
+                duplicate = 0;
         double haTot = 0, haDis;
         float disc = 0.0f;
-        String daftar="";
-        String nPass="";
+        String daftar = "";
+        String nPass = "";
         String pesanLagi, cetakData, backMenu, namaLog, passLog;
         String nama[] = { "Rio", "Rizqi", "Necha" };
         String pass[] = { "test", "coba", "bisa" };
@@ -21,21 +22,21 @@ public class Dasar {
         System.out.println(
                 "\n================================== APLIKASI BOOKING HOTEL ===================================");
         do {
-           System.out.print("Daftarkan User Anda: "); 
-           daftar = scanner.nextLine();
-           for (int i = 0; i < uName; i++) {
-            if (daftar.equals(nama[i])) {
-                duplicate = i;
-                System.out.println("Username Telah Digunakan");
-                break;
+            System.out.print("Daftarkan User Anda: ");
+            daftar = scanner.nextLine();
+            for (int i = 0; i < uName; i++) {
+                if (daftar.equals(nama[i])) {
+                    duplicate = i;
+                    System.out.println("Username Telah Digunakan");
+                    break;
+                }
             }
-           }
-           if (daftar.equals(nama[duplicate])) {
-            continue;
-           }
-           System.out.println("Masukan Password: ");
-           nPass = scanner.nextLine();
-        signUp  = true;
+            if (daftar.equals(nama[duplicate])) {
+                continue;
+            }
+            System.out.println("Masukan Password: ");
+            nPass = scanner.nextLine();
+            signUp = true;
         } while (signUp != true);
         String[] newNama = new String[uName + 1];
         uName++;
@@ -49,9 +50,9 @@ public class Dasar {
             newPass[i] = pass[i];
         }
         pass = newPass;
-        nama[uName-1] = daftar;
-        pass[passW-1] = nPass;
-        //Login
+        nama[uName - 1] = daftar;
+        pass[passW - 1] = nPass;
+        // Login
         do {
             System.out.println(
                     "\n=============================================================================================");
@@ -80,7 +81,7 @@ public class Dasar {
                 login = true;
             }
         } while (login != true);
-        //Asking what hotel did you want to book
+        // Asking what hotel did you want to book
         do {
             System.out.println(
                     "\n=============================================================================================");
@@ -98,17 +99,17 @@ public class Dasar {
             System.out.println("3 Exit");
             System.out.println("Silahkan pilih hotel, Mau nginep dimana? ");
             option = scanner.nextInt();
-            if (option==3) {
+            if (option == 3) {
                 continue;
             }
-            //Asking Room
+            // Asking Room
             System.out.println("mau jenis kamar yang mana? ");
             System.out.println("1. Single Bed");
             System.out.println("2. Double Bed");
             System.out.println("3. Queens Bed");
             System.out.println("4. Kings Bed");
             bed = scanner.nextInt();
-            //Asking Date
+            // Asking Date
             System.out.println("Masukkan Tanggal Pemesanan: ");
             hari = scanner.nextInt();
             System.out.println("Masukkan Bulan: ");
@@ -117,7 +118,7 @@ public class Dasar {
             tahun = scanner.nextInt();
             System.out.println("Masukkan Lama Menginap: ");
             lama = scanner.nextInt();
-            //Case
+            // Case
             switch (option) {
                 case 1:
                     if (hari == 17 && bulan == 8) {
@@ -140,18 +141,18 @@ public class Dasar {
                     System.out.println("\t\t Menu yang anda masukkan salah!");
                     break;
             }
-            //operation
+            // operation
             haMa = jenisKamar[option - 1][bed - 1] * lama;
             haDis = haMa * disc;
             haTot = haMa - haDis;
             counter++;
             System.out.println("Total Tagihan = " + haTot);
-            //Asking for data
+            // Asking for data
             System.out.println(
                     "===============================================================================================");
             System.out.print("\t\t   Apakah anda ingin mencetak data pemesanan? (Y/T) : ");
             cetakData = scanner.next();
-            //Printing data
+            // Printing data
             if (cetakData.equalsIgnoreCase("y")) {
                 System.out.println(
                         "\n===============================================================================================");
@@ -169,7 +170,7 @@ public class Dasar {
             } else {
                 System.out.println("\t\t\t Data Tidak Dicetak, Terimakasih");
             }
-            //Asking booking again in the same hotel
+            // Asking booking again in the same hotel
             System.out.println(
                     "===============================================================================================");
             System.out.print("\t\t   Apakah anda ingin memesan lagi? (Y/T) : ");
@@ -177,10 +178,10 @@ public class Dasar {
             if (pesanLagi.equalsIgnoreCase("y")) {
                 option = option;
                 continue;
-            } else if(pesanLagi.equalsIgnoreCase("t")){
+            } else if (pesanLagi.equalsIgnoreCase("t")) {
                 System.out.println("\t\t Terimakasih Telah Memesan " + "kamar" + hotel + " di Aplikasi Kami");
             }
-            //Asking back to menu
+            // Asking back to menu
             System.out.println(
                     "===============================================================================================");
             System.out.print("\t\t\t   Kembali ke menu (ketik 'Y') : ");
