@@ -4,10 +4,12 @@ public class Dasar {
     public static void main(String[] args) {
         //Declareration
         Scanner scanner = new Scanner(System.in);
-        boolean login = false;
-        int option, lama, haMa, hari, bulan, tahun, counter = 0, user = -2, word = -1, bed;
+        boolean login = false, signUp = false;
+        int option, lama, haMa, hari, bulan, tahun, counter = 0, user = -2, word = -1, bed, uName = 3, passW = 3, duplicate = 0;
         double haTot = 0, haDis;
         float disc = 0.0f;
+        String daftar="";
+        String nPass="";
         String pesanLagi, cetakData, backMenu, namaLog, passLog;
         String nama[] = { "Rio", "Rizqi", "Necha" };
         String pass[] = { "test", "coba", "bisa" };
@@ -18,6 +20,37 @@ public class Dasar {
         };
         System.out.println(
                 "\n================================== APLIKASI BOOKING HOTEL ===================================");
+        do {
+           System.out.print("Daftarkan User Anda: "); 
+           daftar = scanner.nextLine();
+           for (int i = 0; i < uName; i++) {
+            if (daftar.equals(nama[i])) {
+                duplicate = i;
+                System.out.println("Username Telah Digunakan");
+                break;
+            }
+           }
+           if (daftar.equals(nama[duplicate])) {
+            continue;
+           }
+           System.out.println("Masukan Password: ");
+           nPass = scanner.nextLine();
+        signUp  = true;
+        } while (signUp != true);
+        String[] newNama = new String[uName + 1];
+        uName++;
+        for (int i = 0; i < nama.length; i++) {
+            newNama[i] = nama[i];
+        }
+        nama = newNama;
+        String[] newPass = new String[passW + 1];
+        passW++;
+        for (int i = 0; i < pass.length; i++) {
+            newPass[i] = pass[i];
+        }
+        pass = newPass;
+        nama[uName-1] = daftar;
+        pass[passW-1] = nPass;
         //Login
         do {
             System.out.println(
