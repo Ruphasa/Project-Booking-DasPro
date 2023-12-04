@@ -23,6 +23,7 @@
 - Choosing room type
 - Extra Bed
 - Discount System
+- Payment with cash or cashless
 ---
 <br/>
 <p align="center">
