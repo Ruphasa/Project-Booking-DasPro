@@ -100,8 +100,8 @@ public class WithFungsi {
     // Necha
     static void RoomType() {
         int jenisKamar[][] = {
-            { 200000, 400000, 500000, 700000 },
-            { 250000, 600000, 750000, 900000 }
+            { 100000, 300000, 400000, 600000 },
+            { 150000, 400000, 550000, 800000 }
     };
 
         System.out.println("Pilih jenis kasur: ");
