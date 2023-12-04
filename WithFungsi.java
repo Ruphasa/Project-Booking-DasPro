@@ -7,7 +7,7 @@ public class WithFungsi {
     static Scanner sc = new Scanner(System.in);
     static int harga = 0;
     static boolean login = false, signUp = false;
-    static int lama, haMa, hari, bulan, tahun, counter = 0, user = -2, word = -1, uName = 3, passW = 3,
+    static int lama, haMa, hari, bulan, tahun, baris = 2, counter = 0, user = -2, word = -1, uName = 3, passW = 3,
             duplicate = 0;
     static double haTot = 0, haDis;
     static float disc = 0.0f;
@@ -92,7 +92,36 @@ public class WithFungsi {
 
     // ada yang mau?
     static void RegistHotel() {
+        System.out.print("Masukan Nama Hotel: ");
+        String newHotel = sc.nextLine();
 
+        String[] newArray = new String[baris + 1];
+        baris++;
+        for (int i = 0; i < hotel.length; i++) {
+            newArray[i] = hotel[i];
+        }
+        hotel = newArray;
+        hotel[baris - 1] = newHotel;
+
+        int[][] newKamar = new int[baris + 1][4];
+        baris++;
+        for (int i = 0; i < jenisKamar.length; i++) {
+            for (int j = 0; j < jenisKamar[i].length; j++) {
+                newKamar[i][j] = jenisKamar[i][j];
+            }
+        }
+        jenisKamar = newKamar;
+
+        System.out.println("masukan harga single Bed");
+        jenisKamar[baris - 1][0] = sc.nextInt();
+        System.out.println("masukan harga Double Bed");
+        jenisKamar[baris - 1][1] = sc.nextInt();
+        System.out.println("masukan harga Queens Bed");
+        jenisKamar[baris - 1][2] = sc.nextInt();
+        System.out.println("masukan harga Kings Bed");
+        jenisKamar[baris - 1][3] = sc.nextInt();
+
+        MainMenu();
     }
 
     // Rizqi
@@ -126,8 +155,8 @@ public class WithFungsi {
     // Necha
     static void RoomType() {
         int jenisKamar[][] = {
-                { 200000, 400000, 500000, 700000 },
-                { 250000, 600000, 750000, 900000 }
+                { 100000, 300000, 400000, 600000 },
+                { 150000, 400000, 550000, 800000 }
         };
 
         System.out.println("Pilih jenis kasur: ");
