@@ -3,17 +3,18 @@ import java.util.Date;
 
 public class WithFungsi {
 
-    static int option, bed;
+    static int option, bed, menu;
     static Scanner sc = new Scanner(System.in);
+    static Date now = new Date();
     static int harga = 0;
     static boolean login = false, signUp = false;
     static int lama, haMa, hari, bulan, tahun, baris = 2, counter = 0, user = -2, word = -1, uName = 3, passW = 3,
-            duplicate = 0, bayar = 0, cash = 0;
+            duplicate = 0, bayar = 0, cash = 0, list = 0;
     static double haTot = 0, haDis, rek = 0;
     static float disc = 0.0f;
     static String daftar = "";
     static String nPass = "", bank = "";
-    static String pesanLagi, cetakData, backMenu, namaLog, passLog, extra,anything;
+    static String pesanLagi, cetakData, backMenu, namaLog, passLog, extra, anything;
     static String nama[] = { "Rio", "Rizqi", "Necha" };
     static String pass[] = { "test", "coba", "bisa" };
     static String[] hotel = { "aria", "montana" };
@@ -21,6 +22,9 @@ public class WithFungsi {
     static int jenisKamar[][] = {
             { 100000, 300000, 400000, 600000 },
             { 150000, 400000, 550000, 800000 }
+    };
+    static String jenisKasur[] = {
+            "Single Bed", "Double Bed", "Queens Bed", "KIngs Bed"
     };
 
     // Rio
@@ -134,8 +138,8 @@ public class WithFungsi {
         }
         System.out.print("|");
         for (int i = 0; i < hotel.length; i++) {
-            counter++;
-            if (counter % 6 == 0) {
+            list++;
+            if (list % 6 == 0) {
                 System.out.println();
                 System.out.printf("|%2d. %-10s|", (i + 1), hotel[i]);
                 System.out.println();
@@ -159,7 +163,7 @@ public class WithFungsi {
                 { 150000, 400000, 550000, 800000 }
         };
 
-        System.out.println("Pilih jenis kasur: ");
+        System.out.println("Pilih jenis kamar: ");
         System.out.println("1. Single Bed " + jenisKamar[option - 1][0]);
         System.out.println("2. Double Bed " + jenisKamar[option - 1][1]);
         System.out.println("3. Queens Bed " + jenisKamar[option - 1][2]);
@@ -203,9 +207,9 @@ public class WithFungsi {
                     bayar();
             }
             nominal();
-        }else{
+        } else {
             System.out.println("Tagihan anda telah lunas :)");
-            anything=sc.nextLine();
+            anything = sc.nextLine();
             MainMenu();
         }
     }
@@ -214,6 +218,7 @@ public class WithFungsi {
         System.out.print("Masukkan Nominal Anda (Sesuai Tagihan!): Rp. ");
         cash = sc.nextInt();
         sc.nextLine();
+        cekLunas();
     }
 
     static void cekLunas() {
@@ -222,6 +227,7 @@ public class WithFungsi {
             System.out.println("**Tagihan Anda Telah Lunas**");
             System.out.println("input anything to back");
             anything = sc.nextLine();
+            MainMenu();
         } else {
             System.out.println("Nominal Anda salah! Tagihan Belum Lunas");
             nominal();
@@ -240,20 +246,20 @@ public class WithFungsi {
     static void bri() {
         System.out.print("Masukkan No.Rek Anda (15 digit): ");
         rek = sc.nextInt();
-        if (rek < 10) {
+        if (rek < 15) {
             System.out.println("Digit yang Anda masukkan salah!");
             bri();
-        }
-    }
+        } 
+}
 
     static void mandiri() {
         System.out.print("Masukkan No.Rek Anda (13 digit): ");
         rek = sc.nextInt();
-        if (rek < 10) {
+        if (rek < 13) {
             System.out.println("Digit yang Anda masukkan salah!");
             mandiri();
-        }
-    }
+        } 
+}
 
     // Necha
     static void loyalty() {
@@ -264,6 +270,8 @@ public class WithFungsi {
         } else if (counter == 5) {
             disc += 0.15;
             System.out.println("Selamat anda mendapatkan discount loyalty sebesar 15%");
+        } else {
+            disc += 0;
         }
     }
 
@@ -288,21 +296,46 @@ public class WithFungsi {
 
     // ada yang mau?
     static void ExtraBed() {
-System.out.println("Apakah Anda ingin menambah extra bed?(Y/T): ");
+        System.out.println("Apakah Anda ingin menambah extra bed?(Y/T): ");
         extra = sc.next();
         if (extra.equalsIgnoreCase("y")) {
             harga += jenisKamar[option - 1][0];
         } else if (extra.equalsIgnoreCase("t")) {
+            harga += 0;
+        } else {
+            System.out.println("Pilihan Anda salah");
+            ExtraBed();
+        }
+    }
+
+    static void cetak() {
+        if (haTot != cash) {
+            System.out.println("Tagihan Anda belum lunas, Silahkan melakukan pembayaran");
             bayar();
+        } else {
+            System.out.println(
+                    "\n===============================================================================================");
+            System.out.println("\t\t\t\t Cetak Riwayat Pembayaran Hotel");
+            System.out.println(
+                    "===============================================================================================");
+            System.out.println("Nama Pemesan\t : " + namaLog);
+            System.out.println("Hotel\t\t : " + hotel[option]);
+            System.out.println("Jenis Kamar\t : " + jenisKasur[bed]);
+            System.out.println("Waktu Pemesanan\t : " + now);
+            System.out.println("Lama Menginap\t : " + lama + " hari");
+            System.out.println("Diskon\t\t : " + disc);
+            System.out.println("Total Tagihan\t : " + "Rp " + haTot);
+            anything = sc.nextLine();
+            MainMenu();
         }
     }
 
     // Rizqi
     static void Discount() {
-        // Date now = new Date();
-        // if (login) {
+        Date now = new Date();
+        if (login) {
 
-        // }
+        }
     }
 
     static void Run() {
@@ -311,10 +344,10 @@ System.out.println("Apakah Anda ingin menambah extra bed?(Y/T): ");
         System.out.println("1. Signn up jika belum memiliki akun");
         System.out.println("2. Login jika sudah memiliki akun");
         System.out.println("3. keluar applikasi");
-        option = sc.nextInt();
+        menu = sc.nextInt();
         sc.nextLine();
         ClearScreen();
-        switch (option) {
+        switch (menu) {
             case 1:
                 SignUp();
             case 2:
@@ -328,7 +361,7 @@ System.out.println("Apakah Anda ingin menambah extra bed?(Y/T): ");
     }
 
     static void Exit() {
-
+        
     }
 
     static void HeadLine() {
@@ -342,11 +375,12 @@ System.out.println("Apakah Anda ingin menambah extra bed?(Y/T): ");
         System.out.println("1. Daftar hotel");
         System.out.println("2. Booking hotel");
         System.out.println("3. Bayar");
-        System.out.println("4. Ganti akun");
-        System.out.print("(1/2/3) : ");
-        option = sc.nextInt();
+        System.out.println("4. Cetak Riwayat Pembayaran");
+        System.out.println("5. Ganti akun");
+        System.out.print("(1/2/3/4/5) : ");
+        menu = sc.nextInt();
         sc.nextLine();
-        switch (option) {
+        switch (menu) {
             case 1:
                 ClearScreen();
                 RegistHotel();
@@ -356,6 +390,8 @@ System.out.println("Apakah Anda ingin menambah extra bed?(Y/T): ");
             case 3:
                 bayar();
             case 4:
+                cetak();
+            case 5:
                 ClearScreen();
                 Run();
             default:
