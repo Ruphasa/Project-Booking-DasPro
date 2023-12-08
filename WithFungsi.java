@@ -249,8 +249,8 @@ public class WithFungsi {
         if (rek < 15) {
             System.out.println("Digit yang Anda masukkan salah!");
             bri();
-        } 
-}
+        }
+    }
 
     static void mandiri() {
         System.out.print("Masukkan No.Rek Anda (13 digit): ");
@@ -258,8 +258,8 @@ public class WithFungsi {
         if (rek < 13) {
             System.out.println("Digit yang Anda masukkan salah!");
             mandiri();
-        } 
-}
+        }
+    }
 
     // Necha
     static void loyalty() {
@@ -361,7 +361,7 @@ public class WithFungsi {
     }
 
     static void Exit() {
-        
+
     }
 
     static void HeadLine() {
@@ -388,8 +388,10 @@ public class WithFungsi {
                 ClearScreen();
                 HotelList();
             case 3:
+                ClearScreen();
                 bayar();
             case 4:
+                ClearScreen();
                 cetak();
             case 5:
                 ClearScreen();
