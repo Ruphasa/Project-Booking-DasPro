@@ -332,10 +332,7 @@ public class WithFungsi {
 
     // Rizqi
     static void Discount() {
-        Date now = new Date();
-        if (login) {
-
-        }
+        
     }
 
     static void Run() {
