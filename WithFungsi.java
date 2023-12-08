@@ -9,20 +9,23 @@ public class WithFungsi {
     static int harga = 0;
     static boolean login = false, signUp = false;
     static int lama, haMa, hari, bulan, tahun, baris = 2, counter = 0, user = -2, word = -1, uName = 3, passW = 3,
-            duplicate = 0, bayar = 0, cash = 0, list = 0;
+            duplicate = 0, bayar = 0, cash = 0, list = 0, passB = 0, namB = 0;
     static double haTot = 0, haDis, rek = 0;
     static float disc = 0.0f;
     static String daftar = "";
     static String nPass = "", bank = "";
     static String pesanLagi, cetakData, backMenu, namaLog, passLog, extra, anything;
-    static String nama[] = { "Rio", "Rizqi", "Necha" };
-    static String pass[] = { "test", "coba", "bisa" };
+    static String uNama[] = { "Rio", "Rizqi", "Necha" };
+    static String uPass[] = { "test", "coba", "bisa" };
     static String[] hotel = { "aria", "montana" };
     static String namaHotel = "";
     static int jenisKamar[][] = {
             { 100000, 300000, 400000, 600000 },
             { 150000, 400000, 550000, 800000 }
     };
+    static String bNama[] = {};
+    static String bPass[] = {};
+
     static String jenisKasur[] = {
             "Single Bed", "Double Bed", "Queens Bed", "KIngs Bed"
     };
@@ -31,12 +34,18 @@ public class WithFungsi {
     static void SignUp() {
         System.out.println(
                 "\n================================== APLIKASI BOOKING HOTEL ===================================");
-
+        System.out.println("Daftarkan akun sebagai 1. User  2. Bisnis");
+        menu = sc.nextInt();
         System.out.print("Daftarkan User Anda: ");
         daftar = sc.nextLine();
+        for (int i = 0; i < bNama.length; i++) {
+            if (daftar.equals(bNama[i])) {
+                System.out.println("Username Telah Digunakan");
+                SignUp();
+            }
+        }
         for (int i = 0; i < uName; i++) {
-            if (daftar.equals(nama[i])) {
-                duplicate = i;
+            if (daftar.equals(uNama[i])) {
                 System.out.println("Username Telah Digunakan");
                 SignUp();
             }
@@ -44,21 +53,39 @@ public class WithFungsi {
         System.out.print("Masukan Password: ");
         nPass = sc.nextLine();
 
-        String[] newNama = new String[uName + 1];
-        uName++;
-        for (int i = 0; i < nama.length; i++) {
-            newNama[i] = nama[i];
-        }
-        nama = newNama;
-        String[] newPass = new String[passW + 1];
-        passW++;
-        for (int i = 0; i < pass.length; i++) {
-            newPass[i] = pass[i];
-        }
-        pass = newPass;
-        nama[uName - 1] = daftar;
-        pass[passW - 1] = nPass;
-        LogIn();
+       if (menu == 1) {
+           String[] newNama = new String[uName + 1];
+           uName++;
+           for (int i = 0; i < uNama.length; i++) {
+               newNama[i] = uNama[i];
+           }
+           uNama = newNama;
+           String[] newPass = new String[passW + 1];
+           passW++;
+           for (int i = 0; i < uPass.length; i++) {
+               newPass[i] = uPass[i];
+           }
+           uPass = newPass;
+           uNama [uName - 1] = daftar;
+           uPass [passW - 1] = nPass;
+           LogIn();
+       } else if (menu == 2) {
+         String[] newNama = new String[namB + 1];
+           namB++;
+           for (int i = 0; i < bNama.length; i++) {
+               newNama[i] = bNama[i];
+           }
+           bNama = newNama;
+           String[] newPass = new String[passB + 1];
+           passB++;
+           for (int i = 0; i < bPass.length; i++) {
+               newPass[i] = bPass[i];
+           }
+           bPass = newPass;
+           bNama [namB - 1] = daftar;
+           bPass [passB - 1] = nPass;
+           LogIn();
+       }
     }
 
     // Rio
@@ -73,25 +100,52 @@ public class WithFungsi {
         System.out.print("Username : ");
         namaLog = sc.nextLine();
 
-        for (int i = 0; i < nama.length; i++) {
-            if (namaLog.equals(nama[i])) {
-                user = i;
+        if (menu == 1) {
+            for (int i = 0; i < uNama.length; i++) {
+                if (namaLog.equals(uNama[i])) {
+                    user = i;
+                }
+            }
+            System.out.print("Password : ");
+            passLog = sc.nextLine();
+    
+            for (int i = 0; i < uPass.length; i++) {
+                if (passLog.equals(uPass[i])) {
+                    word = i;
+                }
+            }
+            if (user == word) {
+                user = -2;
+                word = -1;
+                MainMenuUser();
+            } else {
+                LogIn();
+                System.out.println("Username atau Password salah!");
+            }
+        } else if (menu == 2) {
+            for (int i = 0; i < bNama.length; i++) {
+                if (namaLog.equals(bNama[i])) {
+                    user = i;
+                }
+            }
+            System.out.print("Password : ");
+            passLog = sc.nextLine();
+    
+            for (int i = 0; i < bPass.length; i++) {
+                if (passLog.equals(bPass[i])) {
+                    word = i;
+                }
+            }
+            if (user == word) {
+                user = -2;
+                word = -1;
+                MainMenuBisnis();
+            } else {
+                LogIn();
+                System.out.println("Username atau Password salah!");
             }
         }
-        System.out.print("Password : ");
-        passLog = sc.nextLine();
 
-        for (int i = 0; i < pass.length; i++) {
-            if (passLog.equals(pass[i])) {
-                word = i;
-            }
-        }
-        if (user == word) {
-            MainMenu();
-        } else {
-            LogIn();
-            System.out.println("Username atau Password salah!");
-        }
     }
 
     // Rio
