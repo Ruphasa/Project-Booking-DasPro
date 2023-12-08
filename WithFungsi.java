@@ -13,7 +13,7 @@ public class WithFungsi {
     static float disc = 0.0f;
     static String daftar = "";
     static String nPass = "", bank = "";
-    static String pesanLagi, cetakData, backMenu, namaLog, passLog;
+    static String pesanLagi, cetakData, backMenu, namaLog, passLog, extra;
     static String nama[] = { "Rio", "Rizqi", "Necha" };
     static String pass[] = { "test", "coba", "bisa" };
     static String[] hotel = { "aria", "montana" };
@@ -198,7 +198,7 @@ public class WithFungsi {
                 System.out.println("Pilihan Anda salah");
                 bayar();
         }
-            nominal();
+        nominal();
     }
 
     static void nominal() {
@@ -212,8 +212,8 @@ public class WithFungsi {
                     + " Telah Berhasil!");
             System.out.println("**Tagihan Anda Telah Lunas**");
         } else {
-           System.out.println("Nominal Anda salah! Tagihan Belum Lunas");
-           nominal();
+            System.out.println("Nominal Anda salah! Tagihan Belum Lunas");
+            nominal();
         }
     }
 
@@ -264,7 +264,13 @@ public class WithFungsi {
 
     // ada yang mau?
     static void ExtraBed() {
-
+        System.out.println("Apakah Anda ingin menambah extra bed?(Y/T): ");
+        extra = sc.next();
+        if (extra.equalsIgnoreCase("y")) {
+            harga += jenisKamar[option - 1][0];
+        } else if (extra.equalsIgnoreCase("t")) {
+            bayar();
+        }
     }
 
     // Rizqi
