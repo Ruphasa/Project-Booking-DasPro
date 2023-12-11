@@ -1,17 +1,19 @@
-import java.util.Scanner;
-import java.util.Date;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Scanner;
+import java.util.Random;
 public class WithFungsi {
     static int option, bed, menu, akun;
     static Scanner sc = new Scanner(System.in);
     static Date now = new Date();
     static LocalDateTime localDateTime = LocalDateTime.now();
-    static int harga = 0;
+    static int harga = 0, nomorKamar = 0;
     static int lama, haMa, baris = 2, counter = 0, user = -2, index = -1, uName = 2, passW = 2, bayar = 0, cash = 0,
             list = 0, passB = 1, namB = 1;
-    static double haTot = 0, haDis, rek = 0;
+    static double haTot = 0, haDis;
+    static long  rek = 0;
     static float disc = 0.0f;
     static String daftar = "";
     static String nPass = "";
@@ -48,17 +50,20 @@ public class WithFungsi {
         System.out.print("Pilih Akun(1/2): ");
         menu = sc.nextInt();
         sc.nextLine();
+        ClearScreen();
         System.out.print("Daftarkan User Anda: ");
         daftar = sc.nextLine();
 
         for (int i = 0; i < bNama.length; i++) {
             if (daftar.equals(bNama[i])) {
+                ClearScreen();
                 System.out.println("Username Telah Digunakan");
                 SignUp();
             }
         }
         for (int i = 0; i < uName; i++) {
             if (daftar.equals(uNama[i])) {
+                ClearScreen();
                 System.out.println("Username Telah Digunakan");
                 SignUp();
             }
@@ -135,10 +140,12 @@ public class WithFungsi {
 
             if (passLog.equals(uPass[user])) {
                 index = user;
+                ClearScreen();
                 System.out.println("\t\t** Anda Berhasil Login Akun Sebagai User **");
                 MainMenuUser();
             }
             user = -2;
+            ClearScreen();
             LogIn();
             System.out.println("Username atau Password salah!");
         } else if (menu == 2) {
@@ -152,12 +159,14 @@ public class WithFungsi {
 
             if (passLog.equals(bPass[user])) {
                 index = user;
+                ClearScreen();
                 System.out.println("\t\t** Anda Berhasil Login Akun Sebagai Bisnis **");
                 MainMenuBisnis();
             }
             user = -2;
-            LogIn();
+            ClearScreen();
             System.out.println("Username atau Password salah!");
+            LogIn();
         }
     }
 
@@ -189,8 +198,8 @@ public class WithFungsi {
             }
         }
         coordinat = newCoordinat;
-        coordinat[baris-1][0] = baris-1;
-        coordinat[baris-1][1] = index;
+        coordinat[baris - 1][0] = baris - 1;
+        coordinat[baris - 1][1] = index;
 
         System.out.println("masukan harga single Bed");
         jenisKamar[baris - 1][0] = sc.nextInt();
@@ -201,6 +210,7 @@ public class WithFungsi {
         System.out.println("masukan harga Kings Bed");
         jenisKamar[baris - 1][3] = sc.nextInt();
         sc.nextLine();
+        ClearScreen();
         System.out.println("\t\t** Hotel Anda Berhasil Didaftarkan **");
         MainMenuBisnis();
     }
@@ -214,7 +224,7 @@ public class WithFungsi {
         }
         String myHotel[] = new String[length];
         length = 0;
-        for (int i = 0; i < myHotel.length; i++) {
+        for (int i = 0; i < hotel.length; i++) {
             if (coordinat[i][1] == index) {
                 myHotel[length] = hotel[coordinat[i][0]];
                 length++;
@@ -224,8 +234,9 @@ public class WithFungsi {
         for (int i = 0; i < myHotel.length; i++) {
             System.out.printf("|%2d. %-10s", (i + 1), myHotel[i]);
         }
-        System.out.println("\nInsert anything to go back\n");
-        anything=sc.nextLine();
+        System.out.println("\nInsert anything to go back");
+        anything = sc.nextLine();
+        ClearScreen();
         MainMenuBisnis();
     }
 
@@ -255,6 +266,7 @@ public class WithFungsi {
 
                 break;
             default:
+                ClearScreen();
                 System.out.println("Pilihan anda salah");
                 SettingHotel();
                 break;
@@ -284,6 +296,7 @@ public class WithFungsi {
         option = sc.nextInt();
         sc.nextLine();
         if (option == hotel.length + 1) {
+            ClearScreen();
             MainMenuUser();
         }
         Harga();
@@ -299,9 +312,20 @@ public class WithFungsi {
         System.out.println("| 3. Queens Bed       |  " + jenisKamar[option - 1][2] + "  |");
         System.out.println("| 4. Kings Bed        |  " + jenisKamar[option - 1][3] + "  |");
         System.out.println("+--------------------------------+");
+        System.out.println("| 5. Back                        |");
+        System.out.println("+--------------------------------+");
         System.out.print("Pilih Jenis Kamar: ");
         int bed = sc.nextInt();
         sc.nextLine();
+        if (bed==5) {
+            ClearScreen();
+            MainMenuUser();
+        }else if(bed>5&&bed<1){
+            ClearScreen();
+            System.out.println("pilihan anda salah");
+            RoomType();
+        }
+        harga=0;
         harga += jenisKamar[option - 1][bed - 1];
     }
 
@@ -334,6 +358,7 @@ public class WithFungsi {
                     mandiri();
                     break;
                 default:
+                    ClearScreen();
                     System.out.println("Pilihan Anda salah");
                     Payment();
             }
@@ -341,6 +366,7 @@ public class WithFungsi {
         } else {
             System.out.println("Tagihan anda telah lunas :)");
             anything = sc.nextLine();
+            ClearScreen();
             MainMenuUser();
         }
     }
@@ -362,6 +388,7 @@ public class WithFungsi {
             System.out.println("**Tagihan Anda Telah Lunas**");
             System.out.println("input anything to back");
             anything = sc.nextLine();
+            ClearScreen();
             MainMenuUser();
         } else {
             ClearScreen();
@@ -373,7 +400,7 @@ public class WithFungsi {
     static void bnibca() {
         System.out.print("Masukkan No.Rek Anda (10 digit): ");
         rek = sc.nextLong();
-        String rekString = Double.toString(rek);
+        String rekString = Long.toString(rek);
         if (rekString.length() != 10) {
             System.out.println("Digit yang Anda Masukkan Salah!");
             bnibca();
@@ -383,7 +410,7 @@ public class WithFungsi {
     static void bri() {
         System.out.print("Masukkan No.Rek Anda (15 digit): ");
         rek = sc.nextLong();
-        String rekString = Double.toString(rek);
+        String rekString = Long.toString(rek);
         if (rekString.length() != 15) {
             System.out.println("Digit yang Anda Masukkan Salah!");
             bri();
@@ -393,7 +420,7 @@ public class WithFungsi {
     static void mandiri() {
         System.out.print("Masukkan No.Rek Anda (13 digit): ");
         rek = sc.nextLong();
-        String rekString = Double.toString(rek);
+        String rekString = Long.toString(rek);
         if (rekString.length() != 13) {
             System.out.println("Digit yang Anda Masukkan Salah!");
             mandiri();
@@ -429,7 +456,7 @@ public class WithFungsi {
         System.out.println("*================================*");
         System.out.println("| Total Tagihan Anda = " + haTot + "\t |");
         System.out.println("*================================*");
-        System.out.println("input anything to back");
+        System.out.println("input anything to go back");
         anything = sc.nextLine();
         MainMenuUser();
     }
@@ -453,6 +480,8 @@ public class WithFungsi {
             System.out.println("Tagihan Anda Belum Lunas, Silahkan Melakukan Pembayaran");
             Payment();
         } else {
+            Random random = new Random();
+            nomorKamar = random.nextInt(20);
             System.out.println(
                     "\n===============================================================================================");
             System.out.println("\t\t\t\t Cetak Pembayaran Hotel");
@@ -461,6 +490,7 @@ public class WithFungsi {
             System.out.println("Nama Pemesan\t : " + namaLog);
             System.out.println("Hotel\t\t : " + hotel[option]);
             System.out.println("Jenis Kamar\t : " + jenisKasur[bed]);
+            System.out.println("Nomor Kamar : "+(bed+1)+nomorKamar);
             System.out.println("Waktu Pemesanan\t : " + now);
             System.out.println("Lama Menginap\t : " + lama + " hari");
             System.out.println("Diskon\t\t : " + disc);
@@ -575,6 +605,7 @@ public class WithFungsi {
                 ClearScreen();
                 Run();
             case 5:
+                ClearScreen();
                 Exit();
                 MainMenuUser();
             default:
@@ -600,17 +631,23 @@ public class WithFungsi {
         sc.nextLine();
         switch (menu) {
             case 1:
+                ClearScreen();
                 RegistHotel();
             case 2:
+                ClearScreen();
                 MyHotel();
             case 3:
+                ClearScreen();
                 chooseHotel();
             case 4:
+                ClearScreen();
                 Run();
             case 5:
+                ClearScreen();
                 Exit();
                 MainMenuBisnis();
             default:
+                ClearScreen();
                 System.out.println("pilihan anda salah");
                 MainMenuBisnis();
         }
