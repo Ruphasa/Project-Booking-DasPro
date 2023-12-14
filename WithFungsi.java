@@ -2,10 +2,13 @@ import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Scanner;
+
+import javax.swing.undo.StateEdit;
+
 import java.util.Random;
 
 public class WithFungsi {
-    static int option, bed, menu, akun;
+    static int option, bed = 0, menu, akun;
     static Scanner sc = new Scanner(System.in);
     static Date now = new Date();
     static LocalDateTime localDateTime = LocalDateTime.now();
@@ -13,7 +16,7 @@ public class WithFungsi {
     static int tanggal = 0;
     static int bulan = 0;
     static int tahun = 0;
-    static int harga = 0, nomorKamar = 0;
+    static int harga = 0, angkaRandom = 0;
     static int lama, haMa, baris = 2, user = -2, index = -1, uName = 2, passW = 2, bayar = 0, cash = 0,
             list = 0, passB = 1, namB = 1;
     static double haTot = 0, haDis;
@@ -110,10 +113,10 @@ public class WithFungsi {
 
             int newCounter[] = new int[uName];
             for (int i = 0; i < counter.length; i++) {
-                newCounter[i]=counter[i];
+                newCounter[i] = counter[i];
             }
-            counter=newCounter;
-            counter[uName-1]=0;
+            counter = newCounter;
+            counter[uName - 1] = 0;
             ClearScreen();
             System.out.println("\t\t** Berhasil Daftar Akun! Silahkah LOGIN **");
             LogIn();
@@ -155,6 +158,7 @@ public class WithFungsi {
         System.out.print("Username : ");
         namaLog = sc.nextLine();
 
+        // searching in array of user
         for (int i = 0; i < uNama.length; i++) {
             if (namaLog.equals(uNama[i])) {
                 user = i;
@@ -173,6 +177,7 @@ public class WithFungsi {
             }
         }
 
+        // searching in array of bisnis
         for (int i = 0; i < bNama.length; i++) {
             if (namaLog.equals(bNama[i])) {
                 user = i;
@@ -197,6 +202,7 @@ public class WithFungsi {
         System.out.print("Masukan Nama Hotel: ");
         String newHotel = sc.nextLine();
 
+        // hotel array mutating
         String[] newArray = new String[baris + 1];
         baris++;
         for (int i = 0; i < hotel.length; i++) {
@@ -205,6 +211,7 @@ public class WithFungsi {
         hotel = newArray;
         hotel[baris - 1] = newHotel;
 
+        // jenisKamar mutation
         int[][] newKamar = new int[baris][4];
         for (int i = 0; i < jenisKamar.length; i++) {
             for (int j = 0; j < jenisKamar[i].length; j++) {
@@ -213,6 +220,7 @@ public class WithFungsi {
         }
         jenisKamar = newKamar;
 
+        // coordinat array mutation
         int[][] newCoordinat = new int[baris][2];
         for (int i = 0; i < coordinat.length; i++) {
             for (int j = 0; j < coordinat[i].length; j++) {
@@ -223,6 +231,13 @@ public class WithFungsi {
         coordinat[baris - 1][0] = baris - 1;
         coordinat[baris - 1][1] = index;
 
+        // mutation weekend array
+        int[] newWeekEnd = new int[baris];
+        for (int i = 0; i < weekend.length; i++) {
+            newWeekEnd[i] = weekend[i];
+        }
+        weekend = newWeekEnd;
+
         System.out.println("masukan harga single Bed");
         jenisKamar[baris - 1][0] = sc.nextInt();
         System.out.println("masukan harga Double Bed");
@@ -231,6 +246,8 @@ public class WithFungsi {
         jenisKamar[baris - 1][2] = sc.nextInt();
         System.out.println("masukan harga Kings Bed");
         jenisKamar[baris - 1][3] = sc.nextInt();
+        System.out.println("Masukan kenaikan harga weekend");
+        weekend[baris - 1] = sc.nextInt();
         sc.nextLine();
         ClearScreen();
         System.out.println("\t\t** Hotel Anda Berhasil Didaftarkan **");
@@ -250,6 +267,7 @@ public class WithFungsi {
             anything = sc.nextLine();
             MainMenuBisnis();
         }
+        // hotel array mutation
         String newMyHotel[] = new String[length];
         length = 0;
         for (int i = 0; i < hotel.length; i++) {
@@ -264,7 +282,7 @@ public class WithFungsi {
             System.out.printf("|%2d. %-10s", (i + 1), myHotel[i]);
         }
         System.out.print("|");
-        if (menu == 2) {
+        if (menu == 2) {// If you just want to see your hotel
             System.out.println("\nInsert anything to go back");
             anything = sc.nextLine();
             ClearScreen();
@@ -279,7 +297,7 @@ public class WithFungsi {
         menu = sc.nextInt();
         for (int i = 0; i < hotel.length; i++) {
             if (myHotel[menu - 1] == hotel[i]) {
-                option = i;
+                option = i;// geting original index from hotel array
             }
         }
         SettingHotel();
@@ -333,6 +351,7 @@ public class WithFungsi {
                 }
             }
         }
+        // MUTATION arrays of discount
         banyakDisc++;
         double newDiscount[][] = new double[banyakDisc][4];
         for (int i = 0; i < discount.length; i++) {
@@ -374,6 +393,7 @@ public class WithFungsi {
     // Rizqi
     static void HotelList() {
         HeadLine();
+        list = 0;
         if (hotel.length < 5) {
             System.out.println("+" + "-".repeat(hotel.length * 15 - 1) + "+");
         } else {
@@ -413,7 +433,7 @@ public class WithFungsi {
         System.out.println("| 5. Back                        |");
         System.out.println("+--------------------------------+");
         System.out.print("Pilih Jenis Kamar: ");
-        int bed = sc.nextInt();
+        bed = sc.nextInt();
         sc.nextLine();
         if (bed == 5) {
             ClearScreen();
@@ -461,6 +481,30 @@ public class WithFungsi {
             }
             nominal();
         } else {
+            System.out.println("Tagihan anda telah lunas :)");
+            anything = sc.nextLine();
+            ClearScreen();
+            MainMenuUser();
+        }
+    }
+
+    static void nominal() {
+        System.out.print("Masukkan Nominal Anda (" + haTot + ") Rp. ");
+        cash = sc.nextInt();
+        sc.nextLine();
+        cekLunas();
+    }
+
+    static String nomorKamar = "";
+
+    static void cekLunas() {
+        if (cash == haTot) {
+            Random random = new Random();
+            angkaRandom = random.nextInt(20);
+            nomorKamar = Integer.toString(angkaRandom);
+            if (nomorKamar.length() < 2) {
+                nomorKamar = 0 + nomorKamar;
+            }
             banyakPesanan++;
             String newPesanan[][] = new String[banyakPesanan][6];
             for (int i = 0; i < pesanan.length; i++) {
@@ -470,29 +514,13 @@ public class WithFungsi {
             }
             pesanan = newPesanan;
             pesanan[banyakPesanan - 1][0] = namaLog;
-            pesanan[banyakPesanan - 1][1] = hotel[option];
-            pesanan[banyakPesanan - 1][2] = jenisKasur[bed];
-            pesanan[banyakPesanan - 1][3] = Integer.toString((bed + 1) + nomorKamar);
+            pesanan[banyakPesanan - 1][1] = hotel[option - 1];
+            pesanan[banyakPesanan - 1][2] = jenisKasur[bed - 1];
+            pesanan[banyakPesanan - 1][3] = Integer.toString((bed)) + nomorKamar;
             pesanan[banyakPesanan - 1][4] = Integer.toString(tanggalCheckIn) + "/" + Integer.toString(bulanCheckIn)
                     + "/" + Integer.toString(tahunCheckIn);
             pesanan[banyakPesanan - 1][5] = Integer.toString(tanggalCheckOut) + "/" + Integer.toString(bulanCheckOut)
                     + "/" + Integer.toString(tahunCheckOut);
-            System.out.println("Tagihan anda telah lunas :)");
-            anything = sc.nextLine();
-            ClearScreen();
-            MainMenuUser();
-        }
-    }
-
-    static void nominal() {
-        System.out.print("Masukkan Nominal Anda (Sesuai Tagihan!): Rp. ");
-        cash = sc.nextInt();
-        sc.nextLine();
-        cekLunas();
-    }
-
-    static void cekLunas() {
-        if (cash == haTot) {
             System.out.println(
                     "=============================================================================================");
             System.out.println("Transfer Bank dengan No.Rek " + rek + " Telah Berhasil!");
@@ -583,10 +611,15 @@ public class WithFungsi {
             System.out.print("terlalu lama!");
             Harga();
         }
+        if (tahunCheckIn > tanggalCheckOut && bulanCheckIn == bulanCheckOut) {
+            ClearScreen();
+            System.out.println("Tidak bisa kebali ke masa lalu :)");
+            Harga();
+        }
         if (tanggalCheckIn > tanggalCheckOut) {
             if (bulanCheckIn == 2) {
-                if (tahunCheckIn % 4 == 0) {
-                    if (tahunCheckIn % 100 != 0) {
+                if (tahunCheckIn % 4 == 0) { // is it kabisat
+                    if (tahunCheckIn % 100 != 0) { // realy kabisat?
                         lama = (29 - tanggalCheckIn) + tanggalCheckOut;
                     } else {
                         lama = (28 - tanggalCheckIn) + tanggalCheckOut;
@@ -611,6 +644,7 @@ public class WithFungsi {
         System.out.println("*================================*");
         System.out.println("input anything to go back");
         anything = sc.nextLine();
+        ClearScreen();
         MainMenuUser();
     }
 
@@ -633,21 +667,19 @@ public class WithFungsi {
             System.out.println("Tagihan Anda Belum Lunas, Silahkan Melakukan Pembayaran");
             Payment();
         } else {
-            Random random = new Random();
-            nomorKamar = random.nextInt(20);
             System.out.println(
                     "\n===============================================================================================");
             System.out.println("\t\t\t\t Cetak Pembayaran Hotel");
             System.out.println(
                     "===============================================================================================");
             System.out.println("Nama Pemesan\t : " + namaLog);
-            System.out.println("Hotel\t\t : " + hotel[option]);
-            System.out.println("Jenis Kamar\t : " + jenisKasur[bed]);
-            System.out.println("Nomor Kamar : " + (bed + 1) + nomorKamar);
+            System.out.println("Hotel\t\t : " + hotel[option - 1]);
+            System.out.println("Jenis Kamar\t : " + jenisKasur[bed - 1]);
+            System.out.println("Nomor Kamar : " + (bed) + nomorKamar);
             System.out.println("Waktu Pemesanan\t : " + now);
-            System.out.printf("\nCheck-In : %d/%d/%d\n" + tanggalCheckIn + bulanCheckIn + tahunCheckIn);
-            System.out.printf("\nCheck-Out : %d/%d/%d\n" + tanggalCheckOut + bulanCheckOut + tahunCheckOut);
-            System.out.println("Diskon\t\t : " + disc);
+            System.out.printf("Check-In : %d/%d/%d\n", tanggalCheckIn, bulanCheckIn, tahunCheckIn);
+            System.out.printf("Check-Out : %d/%d/%d\n", tanggalCheckOut, bulanCheckOut, tahunCheckOut);
+            System.out.println("Diskon\t\t : " + disc * 100 + "%");
             System.out.println("Total Tagihan\t : " + "Rp " + haTot);
             System.out.println(
                     "===============================================================================================");
@@ -660,10 +692,10 @@ public class WithFungsi {
     // Rizqi
     static void Discount() {
         for (int i = 0; i < discount.length; i++) {
-            if (discount[i][0] == option) {
-                if (discount[i][1] == tanggal) {
+            if (discount[i][0] == option - 1) {
+                if (discount[i][1] == tanggal) {// checking the value of arrays
                     if (discount[i][2] == bulan) {
-                        harga += weekend[option];
+                        harga += weekend[option - 1];
                         disc += discount[i][3];
                         break;
                     }
@@ -673,12 +705,12 @@ public class WithFungsi {
     }
 
     static void CekHari() {
-        DayOfWeek hari = localDateTime.getDayOfWeek();
+        DayOfWeek hari = localDateTime.getDayOfWeek();// get DAY now
         String day[] = { "MONDAY", "THURSDAY", "WEDNESDAY", "TUESDAY", "FRIDAY", "SATURDAY", "SUNDAY" };
-        for (int i = 0; i < bNama.length; i++) {
+        for (int i = 0; i < day.length; i++) {
             if (hari.equals(day[i])) {
                 if (i > 4) {
-                    harga += weekend[option];
+                    harga += weekend[option - 1];// If weekend hotel its more expensive
                 }
                 break;
             }
@@ -711,17 +743,23 @@ public class WithFungsi {
 
     static void Exit() {
         ClearScreen();
-        System.out.println("====================");
-        System.out.println("||   =             ||");
-        System.out.println("||  ===            ||");
-        System.out.println("|| ====            ||");
-        System.out.println("||  ============== ||");
-        System.out.println("||   ============= ||");
-        System.out.println("||   ===       === ||");
-        System.out.println("||   ===       === ||");
-        System.out.println("||  ===       ==== ||");
-        System.out.println("=====================");
+        System.out.println("                                                   \r\n" + //
+                "       ...                                         \r\n" + //
+                "     -######:                                      \r\n" + //
+                "    -*######%%*.                                   \r\n" + //
+                "    =**######%%%#-                -++***=:         \r\n" + //
+                "    -***#####%%%%%%*:        .:***#########-.      \r\n" + //
+                "    .***#%#*+==+*#%%%#=    :++****##########:.     \r\n" + //
+                "     +##-            .:**-=+++****########%*:-.    \r\n" + //
+                "     :#--:.         .:===+*+:.:-==++***++-:---:    \r\n" + //
+                "     .*--::::::::---=====++++#+:...:::::-------.   \r\n" + //
+                "      ==-::::::------=====++++*#**-:::::::------   \r\n" + //
+                "       -=::::::------====++*+:     .=*+-::::----.  \r\n" + //
+                "         -+-:::------=+**.              .-#*+++-   \r\n" + //
+                "            .=======-.                             \r\n" + //
+                "                                                   ");
         anything = sc.nextLine();
+        ClearScreen();
     }
 
     static void HeadLine() {
@@ -772,13 +810,31 @@ public class WithFungsi {
     }
 
     static void ListPesanan() {
-        System.out.println("+---------------------------------------------+");
+        MyHotel();
+        System.out.println("\nPesanan dari hotel yang mana ?");
+        menu = sc.nextInt();
+        sc.nextLine();
+        System.out.println("+------------------------------------------------------------------------------------+");
+        System.out.println("|    Nama     |    Hotel    | Jenis Kamar | Nomor Kamar |  Check-In   |  Check-Out   |");
         for (int i = 0; i < pesanan.length; i++) {
-            for (int j = 0; j < pesanan[i].length; j++) {
-                System.out.printf("|%-10s", pesanan[i][j]);
+            if (pesanan[i][1].equalsIgnoreCase(myHotel[menu - 1])) {
+                for (int j = 0; j < pesanan[i].length; j++) {
+                    String format = (pesanan[i][j].length() % 2 == 0)
+                            ? "|" + " ".repeat((12 - pesanan[i][j].length()) / 2) + "%s "// If
+                                    + " ".repeat((12 - pesanan[i][j].length()) / 2)
+                            : "|" + " ".repeat((13 - pesanan[i][j].length()) / 2) + "%s"// else
+                                    + " ".repeat((13 - pesanan[i][j].length()) / 2);
+                    System.out.printf(format, pesanan[i][j]);
+                }
+                System.out.print(" |\n");
+            } else {
+                continue;
             }
-            System.out.print(" |\n");
         }
+        System.out.println("+------------------------------------------------------------------------------------+");
+        System.out.println("Insert anything to go back");
+        anything = sc.nextLine();
+        MainMenuBisnis();
     }
 
     static void MainMenuBisnis() {
@@ -823,11 +879,13 @@ public class WithFungsi {
         }
     }
 
+    // For Clearing screen
     static void ClearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+        System.out.print("\033[H\033[2J");// ASCII THAT MEANS ESCAPE
+        System.out.flush();// FLUSHING
     }
 
+    // Main Function
     public static void main(String[] args) {
         Exit();
         Run();
