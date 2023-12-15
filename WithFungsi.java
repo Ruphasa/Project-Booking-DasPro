@@ -2,9 +2,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Scanner;
-
-import javax.swing.undo.StateEdit;
-
 import java.util.Random;
 
 public class WithFungsi {
