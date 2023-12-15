@@ -195,6 +195,9 @@ public class WithFungsi {
                 LogIn();
             }
         }
+        ClearScreen();
+        System.out.println("Username belum terdaftar silahkan daftar atau coba lagi");
+        LogIn();
     }
 
     // Rio
@@ -323,6 +326,9 @@ public class WithFungsi {
         } else if (menu == 5) {
             System.out.println("Masukkan Harga Baru : ");
             weekend[option] = sc.nextInt();
+        } else if (menu == 6) {
+            ClearScreen();
+            MainMenuBisnis();
         } else {
             ClearScreen();
             System.out.println("pilahan anda salah!");
@@ -371,6 +377,7 @@ public class WithFungsi {
         System.out.println("Mau setting apa ?");
         System.out.println("1. Harga Kamar");
         System.out.println("2. Discount");
+        System.out.println("3. Back");
         menu = sc.nextInt();
         sc.nextLine();
         switch (menu) {
@@ -382,6 +389,9 @@ public class WithFungsi {
                 ClearScreen();
                 SettingDiscount();
                 break;
+            case 3:
+                ClearScreen();
+                MainMenuBisnis();
             default:
                 ClearScreen();
                 System.out.println("Pilihan anda salah");
@@ -611,7 +621,7 @@ public class WithFungsi {
             System.out.print("terlalu lama!");
             Harga();
         }
-        if (tahunCheckIn > tanggalCheckOut && bulanCheckIn == bulanCheckOut) {
+        if (tahunCheckIn > tahunCheckOut && bulanCheckIn == bulanCheckOut) {
             ClearScreen();
             System.out.println("Tidak bisa kebali ke masa lalu :)");
             Harga();
